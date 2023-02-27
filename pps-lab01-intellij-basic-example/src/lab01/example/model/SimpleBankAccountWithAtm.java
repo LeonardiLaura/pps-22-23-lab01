@@ -21,13 +21,19 @@ public class SimpleBankAccountWithAtm implements BankAccount {
 
     @Override
     public void deposit(int userID, double amount) {
-        if(this.holder.getId()==userID){
+        if(this.checkHolder(userID)){
             this.balance=this.balance+amount-1;
         }
     }
 
     @Override
     public void withdraw(int userID, double amount) {
-        this.balance=this.balance-amount-1;
+        if(this.checkHolder(userID)){
+            this.balance=this.balance-amount-1;
+        }
+    }
+
+    private boolean checkHolder(int userID){
+        return this.holder.getId()==userID;
     }
 }

@@ -48,4 +48,10 @@ public class SimpleBankAccountWithAtmTest {
         assertEquals(this.bankAccountAtm.getBalance(),100);
     }
 
+    @Test
+    void testWrongWithdraw(){
+        this.bankAccountAtm.deposit(this.accountHolder.getId(),201);
+        this.bankAccountAtm.withdraw(1,49);
+        assertEquals(this.bankAccountAtm.getBalance(),200);
+    }
 }
