@@ -22,19 +22,24 @@ public class SimpleBankAccountWithAtm implements BankAccount {
 
     @Override
     public void deposit(int userID, double amount) {
-        if(this.checkHolder(userID)){
+        if(this.checkHolder(userID) && this.checkNegativeBalance(this.balance+amount,FEE)){
             this.balance=this.balance+amount-FEE;
         }
     }
 
     @Override
     public void withdraw(int userID, double amount) {
-        if(this.checkHolder(userID) && this.balance>=amount+FEE){
+        if(this.checkHolder(userID) && this.checkNegativeBalance(this.balance,amount+FEE)){
             this.balance=this.balance-amount-FEE;
         }
     }
 
     private boolean checkHolder(int userID){
         return this.holder.getId()==userID;
+    }
+
+
+    private boolean checkNegativeBalance(double balance, double withdraw ){
+        return balance>=withdraw;
     }
 }

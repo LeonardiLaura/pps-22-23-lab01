@@ -61,4 +61,11 @@ public class SimpleBankAccountWithAtmTest {
         this.bankAccountAtm.withdraw(this.accountHolder.getId(),200);
         assertEquals(this.bankAccountAtm.getBalance(),100);
     }
+
+
+    @Test
+    void testNegativeDepositBalance(){
+        this.bankAccountAtm.deposit(this.accountHolder.getId(),0.5);
+        assertEquals(this.bankAccountAtm.getBalance(),0);
+    }
 }
