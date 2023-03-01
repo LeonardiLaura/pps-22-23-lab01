@@ -68,10 +68,7 @@ public class CircularListImpl implements CircularList {
         };
     }
 
-    @Override
-    public Optional<Integer> filteredNext(Predicate<Integer> condition) {
-        return Optional.empty();
-    }
+
 
 
 }

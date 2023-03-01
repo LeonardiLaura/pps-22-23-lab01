@@ -44,12 +44,6 @@ public interface CircularList {
 
 
 
-    /**
-     * finds and returns the next element that satisfies a given condition
-     * If no such element is found the method should return an empty Optional
-     * @return next element of the list which satisfies the condition given,
-     * or an empty optional if there isn't any
-     */
-    Optional<Integer> filteredNext(Predicate<Integer> condition);
+
 
 }

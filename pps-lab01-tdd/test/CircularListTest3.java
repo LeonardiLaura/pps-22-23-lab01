@@ -1,0 +1,116 @@
+
+import es3.CircularList;
+import es3.CircularListImpl;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.function.Predicate;
+
+
+/**
+ * The test suite for testing the CircularList implementation
+ */
+public class CircularListTest3 {
+
+    private CircularList list;
+    //TODO: test implementation
+
+    @BeforeEach
+    void beforeEach(){
+        this.list = new CircularListImpl(new ArrayList<>());
+    }
+
+
+    @Test
+    void testEmpty(){
+        Assertions.assertTrue(this.list.isEmpty());
+    }
+
+    @Test
+    void testAdd(){
+        this.list.add(6);
+        Assertions.assertFalse(this.list.isEmpty());
+    }
+
+
+    @Test
+    void testSize(){
+        Assertions.assertEquals(this.list.size(),0);
+        this.list.add(2);
+        Assertions.assertEquals(this.list.size(),1);
+    }
+
+    @Test
+    public void testNext(){
+        this.list.add(1);
+        Assertions.assertEquals(this.list.next(), Optional.of(1));
+    }
+
+    @Test
+    public void testNextEmpty(){
+        Assertions.assertEquals(this.list.next(), Optional.empty());
+    }
+
+    @Test
+    public void testNextCircular(){
+        this.list.add(1);
+        this.list.add(2);
+        Assertions.assertEquals(this.list.next(),Optional.of(1));
+        Assertions.assertEquals(this.list.next(),Optional.of(2));
+        Assertions.assertEquals(this.list.next(),Optional.of(1));
+    }
+
+
+    @Test
+    public void testPrevious(){
+        this.list.add(1);
+        this.list.add(2);
+        this.list.add(3);
+        this.list.next();
+        this.list.next();
+        Assertions.assertEquals(this.list.previous(),Optional.of(1));
+    }
+
+    @Test
+    public void testPreviousEmpty(){
+        Assertions.assertEquals(this.list.previous(), Optional.empty());
+    }
+    @Test
+    public void testPreviousCircular(){
+        this.list.add(1);
+        Assertions.assertEquals(this.list.previous(),Optional.of(1));
+        this.list.add(2);
+        Assertions.assertEquals(this.list.previous(),Optional.of(2));
+        Assertions.assertEquals(this.list.previous(),Optional.of(1));
+    }
+
+    @Test
+    public void testReset(){
+        this.list.add(1);
+        this.list.add(2);
+        this.list.add(3);
+        this.list.next();
+        this.list.reset();
+        Assertions.assertEquals(this.list.next(),Optional.of(1));
+    }
+
+    @Test
+    public void testFilteredNext(){
+        this.list.add(1);
+        this.list.add(2);
+        this.list.add(11);
+        this.list.add(12);
+        this.list.add(13);
+        this.list.next();
+        this.list.next();
+        this.list.next();
+        Assertions.assertEquals(this.list.filteredNext(x->x>10),Optional.of(12));
+        Assertions.assertEquals(this.list.filteredNext(x->x>10),Optional.of(13));
+        Assertions.assertEquals(this.list.filteredNext(x->x>10),Optional.of(11));
+        Assertions.assertEquals(this.list.next(),Optional.of(12));
+
+    }
+}

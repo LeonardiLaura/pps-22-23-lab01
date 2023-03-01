@@ -63,6 +63,6 @@ public class CircularListTest2 {
         Assertions.assertEquals(it.next(), Optional.of(2));
     }
 
-    
+
 
 }
