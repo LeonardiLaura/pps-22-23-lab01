@@ -85,7 +85,16 @@ public class CircularListTest {
         this.list.add(2);
         Assertions.assertEquals(this.list.previous(),Optional.of(2));
         Assertions.assertEquals(this.list.previous(),Optional.of(1));
+    }
 
+    @Test
+    public void testReset(){
+        this.list.add(1);
+        this.list.add(2);
+        this.list.add(3);
+        this.list.next();
+        this.list.reset();
+        Assertions.assertEquals(this.list.next(),Optional.of(1));
     }
 
 }
