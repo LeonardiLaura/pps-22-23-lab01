@@ -52,7 +52,20 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Iterator<Optional<Integer>> backwardIterator() {
-        return null;
+        return new Iterator<Optional<Integer>>() {
+            private int curr=-1;
+
+            @Override
+            public boolean hasNext() {
+                return !list.isEmpty();
+            }
+
+            @Override
+            public Optional<Integer> next() {
+                curr = curr - 1 >= 0? curr - 1 :list.size()-1;
+                return hasNext()? Optional.of(list.get(curr)):Optional.empty();
+            }
+        };
     }
 
     @Override

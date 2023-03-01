@@ -53,5 +53,16 @@ public class CircularListTest2 {
         Assertions.assertEquals(it.next(), Optional.of(1));
     }
 
+    @Test
+    public void testBackwardIterator(){
+        this.list.add(1);
+        this.list.add(2);
+        Iterator<Optional<Integer>> it = this.list.backwardIterator();
+        Assertions.assertEquals(it.next(), Optional.of(2));
+        Assertions.assertEquals(it.next(), Optional.of(1));
+        Assertions.assertEquals(it.next(), Optional.of(2));
+    }
+
+    
 
 }
