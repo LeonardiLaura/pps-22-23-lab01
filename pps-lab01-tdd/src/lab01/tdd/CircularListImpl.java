@@ -7,18 +7,18 @@ public class CircularListImpl implements CircularList {
 
     private final List<Integer> list;
 
-    public CircularListImpl(List list) {
-        this.list = list;
+    public CircularListImpl(List l) {
+        this.list = l;
     }
 
     @Override
     public void add(int element) {
-
+        this.list.add(element);
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.list.size();
     }
 
     @Override
