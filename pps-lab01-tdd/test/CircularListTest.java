@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Optional;
 
 
 /**
@@ -41,9 +42,25 @@ public class CircularListTest {
         this.list.add(2);
         Assertions.assertEquals(this.list.size(),1);
     }
-    @Disabled
-    @Test public void testTodo(){
-        Assertions.fail();
+
+    @Test
+    public void testNext(){
+        this.list.add(1);
+        Assertions.assertEquals(this.list.next(), Optional.of(1));
+    }
+
+    @Test
+    public void testNextEmpty(){
+        Assertions.assertEquals(this.list.next(), Optional.empty());
+    }
+
+    @Test
+    public void testNextCircular(){
+        this.list.add(1);
+        this.list.add(2);
+        Assertions.assertEquals(this.list.next(),Optional.of(1));
+        Assertions.assertEquals(this.list.next(),Optional.of(2));
+        Assertions.assertEquals(this.list.next(),Optional.of(1));
     }
 
 }

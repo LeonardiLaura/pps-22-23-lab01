@@ -6,6 +6,7 @@ import java.util.Optional;
 public class CircularListImpl implements CircularList {
 
     private final List<Integer> list;
+    private int curr=0;
 
     public CircularListImpl(List l) {
         this.list = l;
@@ -28,7 +29,9 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> next() {
-        return Optional.empty();
+        Optional<Integer> opt = this.list.isEmpty()? Optional.empty(): Optional.of(list.get(curr));
+        curr = curr + 1 <this.list.size()? curr + 1 :0;
+        return opt;
     }
 
     @Override
